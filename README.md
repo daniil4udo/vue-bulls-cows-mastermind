@@ -1,4 +1,6 @@
-# vue-hw
+# Bulls and Cows & Megamind implementation
+
+Implementation of the "Bulls and Cows & Megamind" game using VueJS and GA.
 
 ## Project setup
 ```
@@ -7,17 +9,17 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run dev
+```
+
+### Compiles and production version
+```
+npm run prod
 ```
 
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
 ```
 
 ### Lints and fixes files
