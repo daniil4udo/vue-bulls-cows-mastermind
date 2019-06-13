@@ -1,7 +1,51 @@
 <template>
   <nav class="navbar">
     <ul class="nav">
-
+      <li>
+        Articles
+        <ul class="dropdown">
+          <li>
+            <a
+              target="_blank"
+              href="http://slovesnov.users.sourceforge.net/bullscows/bullscows.pdf"
+            >
+              Article in english version 3.1
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://slovesnov.users.sourceforge.net/bullscows/bullscows3.0.pdf"
+            >
+              Article in english version 3.0
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://slovesnov.users.sourceforge.net/bullscows/bullscows2.1.pdf"
+            >
+              Article in english version 2.1
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://slovesnov.users.sourceforge.net/bullscows/bullscows_ru.pdf"
+            >
+              Article in russian
+            </a>
+          </li>
+          <li>
+            <a
+              target="_blank"
+              href="http://slovesnov.users.sourceforge.net/bullscows/bulls_and_cows.pdf"
+            >
+              Article of John Francis
+            </a>
+          </li>
+        </ul>
+      </li>
       <li>
         <router-link to="/">
           Home
@@ -45,7 +89,7 @@ ul.nav {
   position: relative;
   flex-direction: row;
   align-items: center;
-  max-width: 100%;
+  max-width: 0%;
   margin: 0 auto;
   padding: 0;
   list-style: none;
