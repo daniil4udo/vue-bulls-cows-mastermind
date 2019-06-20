@@ -15,7 +15,6 @@ export default {
         Menu
     }
 };
-
 </script>
 
 <style>
@@ -23,15 +22,14 @@ export default {
 body {
   width: 100%;
 }
-#app { 
-
+#app {
   font-family: "Roboto Mono", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   color: #2c3e50;
   margin-left: 50px;
-  margin-right: 50px  
+  margin-right: 50px;
 }
 #nav {
   padding: 30px;
@@ -51,12 +49,13 @@ a:link {
 
 
 <style lang="scss">
-
 html,
 body {
   height: 100%;
 }
-input[type=button], input[type=submit], input[type=reset] {
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   background-color: #127c7d;
   border: none;
   color: white;
@@ -65,40 +64,40 @@ input[type=button], input[type=submit], input[type=reset] {
   margin: 4px 2px;
   cursor: pointer;
 }
-input[type=button]:disabled {
+input[type="button"]:disabled {
   background-color: #dddddd;
 }
-input[type=text], input[type=number] {
-    padding:5px; 
-    font-size: 14px;
-    border:2px solid #ccc; 
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+input[type="text"],
+input[type="number"] {
+  padding: 5px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
-input[type=text]:focus {
-    border-color:#333;
+input[type="text"]:focus {
+  border-color: #333;
 }
 table {
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   margin: 25px auto;
   border-collapse: collapse;
   border: 1px solid #eee;
   border-bottom: 2px solid #3dafb0;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
-     0px 10px 20px rgba(0,0,0,0.05),
-     0px 20px 20px rgba(0,0,0,0.05),
-     0px 30px 20px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.05),
+    0px 20px 20px rgba(0, 0, 0, 0.05), 0px 30px 20px rgba(0, 0, 0, 0.05);
   tr {
-     &:hover {
+    &:hover {
       background: #f4f4f4;
-      
+
       td {
         color: #555;
       }
     }
   }
-  th, td {
+  th,
+  td {
     color: #999;
     border: 1px solid #eee;
     padding: 7px 15px;
@@ -113,6 +112,5 @@ table {
       border-right: none;
     }
   }
-  
 }
 </style>

@@ -290,15 +290,21 @@ export const mixinBullsCows = {
             
         },
         parseNumber (b) {
-            if (b.length === 0) {
-                return 0;
-            } else if (b.length === 1) {
-                return this.parseDigit(b.charCodeAt(0));
-            } else {
-                return (
-                    this.parseDigit(b.charCodeAt(0)) * (this.RADIX) + this.parseDigit(b.charCodeAt(1))
-                );
-            }
+            return ( b.length === 0 
+                ? 0 
+                : ( b.length === 1 
+                    ? this.parseDigit(b.charCodeAt(0)) 
+                    : this.parseDigit(b.charCodeAt(0)) * (this.RADIX) + this.parseDigit(b.charCodeAt(1)) ) 
+            );
+            // if (b.length === 0) {
+            //     return 0;
+            // } else if (b.length === 1) {
+            //     return this.parseDigit(b.charCodeAt(0));
+            // } else {
+            //     return (
+            //         this.parseDigit(b.charCodeAt(0)) * (this.RADIX) + this.parseDigit(b.charCodeAt(1))
+            //     );
+            // }
         },
         parseDigit (c) {
             return c >= '\\'.charCodeAt(0) ? c - 1 - this.START : c - this.START;

@@ -3,13 +3,18 @@
 const VueLoaderPlugin      = require('vue-loader/lib/plugin');
 const HtmlPlugin           = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+
 const helpers              = require('./helpers');
 const isDev                = process.env.NODE_ENV === 'development';
 
 const webpackConfig = {
     entry: {
         //polyfill: '@babel/polyfill',
-        main: helpers.root('src', 'main'),
+        main: [
+            '@babel/runtime/regenerator',
+            'webpack-hot-middleware/client?reload=true', //need to add ?reload=true in order to hot reload html
+            helpers.root('src', 'main'),
+        ]
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -41,18 +46,11 @@ const webpackConfig = {
                 ]
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss|sass)$/,
                 use: [
                     isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
                     { loader: 'css-loader', options: { sourceMap: isDev } },
-                    { loader: 'sass-loader', options: { sourceMap: isDev } }
-                ]
-            },
-            {
-                test: /\.sass$/,
-                use: [
-                    isDev ? 'vue-style-loader' : MiniCSSExtractPlugin.loader,
-                    { loader: 'css-loader', options: { sourceMap: isDev } },
+                    'postcss-loader',
                     { loader: 'sass-loader', options: { sourceMap: isDev } }
                 ]
             },

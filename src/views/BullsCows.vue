@@ -178,15 +178,15 @@ export default {
             bullsAmount: [ 0,0 ],
             cowsAmount : [ 0,0 ],
 
-            gHasError  : { 
+            gHasError  : {            //Error object
                 isHas    : false,
                 errorText: ''
             },
             
-            gGuess       : [],
-            lastTurn     : false,
-            nRows        : 1,
-            guessedNumber: 0,
+            gGuess       : [],        // Array of all gueses AI made
+            lastTurn     : false,     // 
+            nRows        : 1,         // Equals to times we submited BULLS | COWS 
+            guessedNumber: 0,         // Number that AI send to you to vlaidate if it's a secret number
 
             gId            : 0,        //current id, using during solving a user number
             gLayer         : 1,        //current layer
@@ -194,8 +194,8 @@ export default {
             gResponse      : [],       //array of responses, SIZE
             gStatisticsType: 0,        //0-dont show statistics, 1-show statistics for current algorithm, 2-show statistics for all algorithms
             
-            secretNumber: '1234',
-            tryNumber   : '1234'
+            secretNumber: '1234',     // Your secret number, you want AI to guess (modet of 'Your secret number ')
+            tryNumber   : '1234'      // Number, AI will start with
         };
     },
     computed: {
@@ -215,11 +215,9 @@ export default {
                 this.$store.commit('SET_RAND' , value);
             }
         },
-        
         n () {
             return [ this.secretNumber, this.tryNumber ];
         },
-        
         isSubmitable () {
             //debugger;
             const n = this.gLayer-1;
@@ -230,11 +228,8 @@ export default {
 
             return true;
         },
-        
         gRandomDigits () {return this.makeArray(this.gDigits, this.gRandomness);},
         gRandomPositions () {return this.makeArray(4, this.gRandomness);},
-        
-        
     },
     mounted () {
         this.fclickb();
@@ -294,6 +289,10 @@ export default {
         applyRandom (n) {
             const _ = this;
             const r = [];
+            const rr = new Array(4);
+
+            //rr.reduce( (a, c, i) => a[],[])
+
             for (let i = 0; i < 4; i++) {
                 r[_.gRandomPositions[i]] = _.gRandomDigits[n.charCodeAt(i) - _.ZERO_CODE];
             }
@@ -305,6 +304,18 @@ export default {
             this.nRows = 1;    //global variable shows how many turns did we do
             this.fclickb();
         },
+
+        isFirstRound (rowNum) {
+            const _ = this;
+            _.gId             = 0;
+            _.gLayer          = 1;
+            _.gHasError.isHas = false;
+            _.gGuess          = [];
+            //_.makeRandom();
+            //_.secretNumber = _.numberToString(_.gArray[_.getRandom(_.gArray.length)]);
+            
+        },
+
         fclickb (rowNum) {
             const _ = this;
             let i; let j; 
@@ -313,22 +324,20 @@ export default {
             let row;
             let lastTurn = false;
             // debugger
-            if (this.gSameAllowed === false)
-            {if (!this.checkDuplicate(this.secretNumber)) {
-                _.gHasError.isHas = true;
-                _.gHasError.errorText = 'Same numbers are not allowed for this algorithm';
-                return; 
-            }}
+            if (this.gSameAllowed === false) {
+                if (!this.checkDuplicate(this.secretNumber)) {
+                    _.gHasError.isHas = true;
+                    _.gHasError.errorText = 'Same numbers are not allowed for this algorithm';
+                    return; 
+                }
+            }
 
             if (rowNum === undefined) {
-                _.gId             = 0;
-                _.gLayer          = 1;
-                _.gHasError.isHas = false;
-                _.gGuess          = [];
-                //_.makeRandom();
-                //_.secretNumber = _.numberToString(_.gArray[_.getRandom(_.gArray.length)]);
+                this. isFirstRound(rowNum);
             }
-            else { n = [ parseInt(_.bullsAmount[rowNum-1]), parseInt(_.cowsAmount[rowNum-1]) ];
+
+            else { 
+                n = [ parseInt(_.bullsAmount[rowNum-1]), parseInt(_.cowsAmount[rowNum-1]) ];
 
                 response = _.BC(n[0], n[1]);
                 if (n[0] < 0 || n[0] > 4 || n[1] < 0 || n[1] > 4 || _.findER(response) === -1) {
